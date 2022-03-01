@@ -27,9 +27,11 @@ export function TopMoviesContextProvider(props) {
   const [currentMovieIndex, setCurrentMovieIndex] = useState(0);
 
   const addMovie = (movie: Movie) => {
-    const newArray = [...movies];
-    newArray[currentMovieIndex] = movie;
-    setMovies(newArray);
+    setMovies(prevState => {
+      const updatedMovies = [...prevState];
+      updatedMovies[currentMovieIndex] = movie;
+      return updatedMovies;
+    });
     setShowPickerModal(false);
   };
 
